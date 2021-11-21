@@ -1,0 +1,53 @@
+#!/bin/bash
+
+URL='http://showcase.api.linx.twenty57.net/UnixTime/tounix?date=now'
+
+usage() {
+  cat <<EOF
+  Usage: set-datetime-web [ --yes | -y ] [ --help | -h ]
+
+  --yes -y:
+    Accepts settings datetime directly
+
+  --help -h:
+    Show this message
+EOF
+}
+
+setData() {
+  sudo date -s "@$CURRENT_DATA" > /dev/null && \
+    echo 'Updated date and time'
+}
+
+doSetData() {
+  echo -n "Set date and time for '$HUMAN_DATA' [y/N] "
+  read
+
+  if [[ "$REPLY" == 'y' || "$REPLY" = 'Y' ]]; then
+    setData
+  else
+    echo 'Good Bay'
+  fi
+}
+
+main() {
+  if [[ "$1" == '--help' || "$1" == '-h' ]]; then
+    usage
+    exit
+  fi
+
+  echo 'Looking for date and time...'
+
+  CURRENT_DATA=$(curl -fsSL "$URL" | cut -b 2-11)
+  HUMAN_DATA=$(date --date="@$CURRENT_DATA")
+  
+  if [[ "$1" == '--yes' || "$1" == '-y' ]]; then
+    echo "Setting date and time for '$HUMAN_DATA'"
+    setData
+    exit
+  else
+    doSetData
+  fi
+}
+
+main $1
