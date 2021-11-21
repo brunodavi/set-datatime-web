@@ -1,6 +1,6 @@
 # set-datetime-web
 
-Set date time from web [unixtime](http://unixtime.co.za)
+Set date and time from internet from [unixtime](http://unixtime.co.za)
 
 ## Run
 
