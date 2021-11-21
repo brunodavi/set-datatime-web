@@ -7,11 +7,11 @@ Set date and time from internet from [unixtime](https://unixtime.co.za)
 - Curl
 
 ```bash
-bash -c "$(curl -fsSL https://raw.github.com/brunodavi/sdtw/mast)"
+bash -c "$(https://raw.githubusercontent.com/brunodavi/set-datatime-web/master/sdtw)"
 ```
 
 - Wget
 
 ```bash
-bash -c "$(wget https://raw.github.com/brunodavi/sdtw/master -O -)"
+bash -c "$(wget https://raw.githubusercontent.com/brunodavi/set-datatime-web/master/sdtw -O -)"
 ```
